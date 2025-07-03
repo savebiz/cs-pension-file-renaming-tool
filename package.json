@@ -1,0 +1,16 @@
+{
+  "name": "cs-pension-file-renaming-tool",
+  "version": "1.0.0",
+  "description": "A desktop tool for renaming and organizing pension files by PEN.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-packager . CS-Pension-File-Renaming-Tool --platform=win32 --arch=x64 --icon=icon.ico --overwrite"
+  },
+  "author": "Victor Sabo",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^29.0.0",
+    "electron-packager": "^17.1.1"
+  }
+} 

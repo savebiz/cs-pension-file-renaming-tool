@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Pension File Management Tool</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="dg-header">
+        <div class="dg-header-content">
+            <img src="img/DataGuard-Logo.png" alt="DataGuard Logo" class="dg-logo">
+            <span class="dg-company">DataGuard Document Management Limited</span>
+        </div>
+    </header>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 CS Pension File Renaming Tool</h1>
+            <div class="subtitle">Professional File & Folder Management System</div>
+        </div>
+        <div class="warning-banner">
+            ⚠️ <strong>Important:</strong> This is a demonstration interface. For actual file operations, this tool needs to be deployed as a desktop application or with a backend service that can access your local file system.
+        </div>
+        <div class="form-group">
+            <label for="folderInput">📂 Select Root Directory</label>
+            <input type="file" id="folderInput" webkitdirectory directory multiple>
+            <div class="file-info" id="fileInfo" style="display: none;"></div>
+        </div>
+        <div class="operations-grid">
+            <div class="operation-card" data-option="folder-rename">
+                <span class="card-icon">📁</span>
+                <h3>Folder Renaming by PEN</h3>
+                <p>Renames folders based on unique PEN numbers found in PDF files within each folder. Ensures each folder contains files with only one PEN number.</p>
+                <div class="example">Example:
+SEPARATOR0001105911 → PEN200931411216
+(Based on PEN200931411216_Document.pdf found inside)</div>
+            </div>
+            <div class="operation-card" data-option="file-rename">
+                <span class="card-icon">📄</span>
+                <h3>File Naming Convention</h3>
+                <p>Standardizes PDF filenames by moving PEN numbers to the front, following the agreed naming convention.</p>
+                <div class="example">Example:
+Document_PEN200931411216.pdf → PEN200931411216_Document.pdf</div>
+            </div>
+            <div class="operation-card" data-option="pdf-separation">
+                <span class="card-icon">🗂️</span>
+                <h3>PDF Separation by PEN</h3>
+                <p>Sorts multiple PDFs in a single folder into separate subfolders based on their PEN numbers for better organization.</p>
+                <div class="example">Example:
+/SEPARATOR0001100537/
+├── PEN100537001_Doc1.pdf → /PEN100537001/
+├── PEN100537002_Doc2.pdf → /PEN100537002/
+└── PEN100537003_Doc3.pdf → /PEN100537003/</div>
+            </div>
+        </div>
+        <div class="conflict-resolver" id="conflictResolver">
+            <h4>⚠️ Naming Conflicts Detected</h4>
+            <p>Some operations would create duplicate names. Choose how to handle conflicts:</p>
+            <div class="conflict-options">
+                <button class="conflict-btn" data-action="skip">Skip Conflicts</button>
+                <button class="conflict-btn" data-action="append">Append Number</button>
+                <button class="conflict-btn" data-action="overwrite">Overwrite Existing</button>
+            </div>
+        </div>
+        <div class="controls">
+            <button class="btn-secondary" onclick="previewOperation()">👁️ Preview Changes</button>
+            <button class="btn-primary" onclick="executeOperation()" disabled id="executeBtn">🚀 Execute Operation</button>
+            <button class="btn-secondary" onclick="clearResults()">🗑️ Clear Results</button>
+        </div>
+        <div class="progress" id="progressDiv">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Processing files...</div>
+        </div>
+        <div class="results" id="resultsDiv"></div>
+    </div>
+    <script src="main.js"></script>
+    <script src="renderer.js"></script>
+</body>
+</html> 
